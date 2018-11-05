@@ -6,7 +6,7 @@ namespace Pizza
 {
     class Pizza
     {
-       
-        public string  names { get; set; }
+
+        public string names { get; set; }
     }
 }

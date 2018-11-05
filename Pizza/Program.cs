@@ -9,14 +9,14 @@ namespace Pizza
     class Program
     {
 
-        static  void Main(string[] args)
+        static void Main(string[] args)
         {
             GetClient();
             Console.ReadLine();
         }
 
 
-        public static  void GetClient()
+        public static void GetClient()
         {
             int counter = 0;
             var json = string.Empty;
@@ -25,21 +25,21 @@ namespace Pizza
 
             using (var httpClient = new HttpClient())
             {
-                json =  httpClient.GetStringAsync(url).Result;
-                
+                json = httpClient.GetStringAsync(url).Result;
+
             }
 
             List<dynamic> list1 = JsonConvert.DeserializeObject<List<dynamic>>(json);
 
             foreach (var ar in list1)
             {
-                foreach(string s in ar["toppings"])
+                foreach (string s in ar["toppings"])
                 {
-                    pizza.Add(new Pizza { names = s});
+                    pizza.Add(new Pizza { names = s });
                 }
-                    Console.WriteLine(ar["toppings"]);
-                    ++counter;
-                    if (counter == 20) break;
+                Console.WriteLine(ar["toppings"]);
+                ++counter;
+                if (counter == 20) break;
             }
 
             var query = pizza.GroupBy(x => x.names)
